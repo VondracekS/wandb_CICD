@@ -1,0 +1,20 @@
+name: GitHub Actions Demo
+on: [push]
+
+jobs:
+  io:
+    runs-on: ubuntu-latest
+    # Map a step output to a job output
+    outputs:
+      output1: ${{ steps.step1.outputs.test }}
+      output2: ${{ steps.step2.outputs.test }}
+    steps:
+      - name: set-var
+      id: set-var
+        shell: python
+        run: | 
+          import os
+          with open (os.environ['GITHUB_OUTPUT'], 'a') as f:
+            print(f'VAL=True', file=f)
+      - name: print value
+        run: echo "the value is ${{ steps.set-var.outputs.VAL }}"
