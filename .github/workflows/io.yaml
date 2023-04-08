@@ -10,7 +10,7 @@ jobs:
       output2: ${{ steps.step2.outputs.test }}
     steps:
       - name: set-var
-      id: set-var
+        id: set-var
         shell: python
         run: | 
           import os
